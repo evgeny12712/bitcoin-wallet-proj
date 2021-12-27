@@ -2,7 +2,7 @@
   margin-block: 20px;
   & .add-contact-link {
     width: fit-content;
-    color: $clr4;
+    color: whitesmoke;
     border-block-end: 1px solid transparent;
     padding: 5px;
     & span {
@@ -13,5 +13,11 @@
       transition: border-block-end 0.5s;
       border-block-end: 1px solid $clr6;
     }
+  }
+}
+
+@include for-mobile-layout {
+  .contact-page {
+    margin: 0;
   }
 }

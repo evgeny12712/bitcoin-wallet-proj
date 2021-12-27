@@ -37,7 +37,7 @@ export class ContactEdit extends Component {
     return (
       <section className="container">
         {contact && (
-          <div className="contact-edit-container flex column align-center gap">
+          <div className="contact-edit-container flex column align-center">
             <div className="links-wrapper flex space-between">
               <Link to={'/contacts'} className="back-icon-wrapper flex align-center">
                 <FontAwesomeIcon icon="arrow-circle-left" className="navigate-link-icon" />

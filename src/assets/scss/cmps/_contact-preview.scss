@@ -1,10 +1,11 @@
 .contact-preview {
-  background: $clr4;
+  background: $clr3;
   box-shadow: 0 0 11px #ffffff00;
   overflow: hidden;
   cursor: pointer;
   padding: 10px;
   color: whitesmoke;
+  transition: box-shadow 1s;
   & .info {
     display: flex;
     flex-direction: column;
@@ -30,7 +31,13 @@
     }
   }
 
-  @include for-tablet-layout {
+  &:hover {
+    box-shadow: 0 0 11px whitesmoke;
+  }
+  @include for-mobile-layout {
     max-width: 356px;
+    .edit-link {
+      font-size: 30px;
+    }
   }
 }

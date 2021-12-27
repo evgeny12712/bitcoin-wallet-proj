@@ -19,7 +19,7 @@ export class ContactDetails extends Component {
     return (
       <section className="container">
         {contact && (
-          <div className="contact-details-container flex column align-center gap">
+          <div className="contact-details-container flex column align-center">
             <div className="links-wrapper flex space-between">
               <Link to={'/contacts'} className="info">
                 <FontAwesomeIcon icon="arrow-circle-left" className="navigate-link-icon" />
@@ -29,7 +29,7 @@ export class ContactDetails extends Component {
               </Link>
             </div>
             <img src={`https://robohash.org/${contact._id}`} alt="" />
-            <div className="details-wrapper flex column gap">
+            <div className="details-wrapper flex column gap m20">
               <h3>
                 <span>Name : </span>
                 {contact.name}

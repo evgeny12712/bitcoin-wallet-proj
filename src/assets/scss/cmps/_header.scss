@@ -3,7 +3,7 @@
   & .logo {
     color: $clr6;
   }
-  & a {
+  & nav a {
     color: $clr6;
     font-size: inherit;
     font-family: inherit;
@@ -19,6 +19,5 @@
   }
   @include for-tablet-layout {
     font-size: rem(14px);
-    // max-width: 356px;
   }
 }

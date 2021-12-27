@@ -7,7 +7,9 @@ export class AppHeader extends Component {
       <section>
         <header className="app-header">
           <section className="container flex space-between">
-            <h1 className="logo">₿itwallet</h1>
+            <NavLink exact to="/">
+              <h1 className="logo">₿itwallet</h1>
+            </NavLink>
             <nav className="header-nav flex gap">
               <NavLink exact to="/">
                 Home
