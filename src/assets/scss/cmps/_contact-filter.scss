@@ -1,0 +1,7 @@
+.contact-filter {
+  gap: 20px;
+  & .input-container input {
+    outline: none;
+    padding-inline: 10px;
+  }
+}

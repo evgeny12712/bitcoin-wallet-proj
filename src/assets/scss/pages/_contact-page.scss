@@ -1,0 +1,17 @@
+.contact-page {
+  margin-block: 20px;
+  & .add-contact-link {
+    width: fit-content;
+    color: $clr4;
+    border-block-end: 1px solid transparent;
+    padding: 5px;
+    & span {
+      margin-inline-start: 7px;
+      font-weight: 500;
+    }
+    &:hover {
+      transition: border-block-end 0.5s;
+      border-block-end: 1px solid $clr6;
+    }
+  }
+}

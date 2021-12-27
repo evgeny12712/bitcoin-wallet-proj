@@ -1,0 +1,23 @@
+.contact-details-container {
+  margin-block-start: 40px;
+
+  & img {
+    width: 200px;
+  }
+
+  & .details-wrapper h3 span {
+    font-weight: 500;
+  }
+}
+
+.links-wrapper {
+  width: 50%;
+  & .navigate-link-icon {
+    font-size: 40px;
+    color: $clr4;
+    transition: color 0.2s;
+    &:hover {
+      color: $clr5;
+    }
+  }
+}

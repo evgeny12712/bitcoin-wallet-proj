@@ -1,0 +1,24 @@
+.app-header {
+  background: $clr1;
+  & .logo {
+    color: $clr6;
+  }
+  & a {
+    color: $clr6;
+    font-size: inherit;
+    font-family: inherit;
+    border: 0;
+    opacity: 0.8;
+    transition: 0.3s all;
+    padding: 0;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      opacity: 1;
+    }
+  }
+  @include for-tablet-layout {
+    font-size: rem(14px);
+    // max-width: 356px;
+  }
+}
