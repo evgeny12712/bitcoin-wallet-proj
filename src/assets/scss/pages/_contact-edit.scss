@@ -39,3 +39,9 @@
     color: $clr5;
   }
 }
+
+@include for-mobile-layout {
+  .info-button-delete {
+    font-size: 65px;
+  }
+}

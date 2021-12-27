@@ -5,4 +5,17 @@
   h3 span {
     font-weight: 500;
   }
+  & .home-page-row-wrapper {
+    & .icon-wrapper {
+      margin-inline-end: 5px;
+      & * {
+        color: $clr6;
+        font-size: rem(25px);
+      }
+    }
+    span {
+      font-weight: 700;
+      margin-inline-end: 7px;
+    }
+  }
 }

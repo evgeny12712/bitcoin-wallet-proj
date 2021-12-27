@@ -1,5 +1,5 @@
 .contact-details-container {
-  margin-block-start: 40px;
+  margin-block-start: 30px;
 
   & img {
     width: 200px;
@@ -18,6 +18,22 @@
     transition: color 0.2s;
     &:hover {
       color: $clr5;
+    }
+  }
+}
+
+@include for-mobile-layout {
+  .contact-details-container {
+    margin: 0;
+  }
+  .links-wrapper {
+    width: 100%;
+    margin-block-start: 0;
+    & .navigate-link-icon {
+      font-size: 70px;
+      &:focus {
+        color: $clr5;
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 {
   "name": "robots-react",
+  "homepage": "https://evgeny12712.github.io/bitcoin-wallet-proj",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,16 +20,15 @@
     "react-scripts": "5.0.0",
     "react-sparklines": "^1.7.0",
     "sass": "^1.45.1",
-    "web-vitals": "^2.1.2",
-    "homepage": "https://evgeny12712.github.io/bitcoin-wallet-proj"
+    "web-vitals": "^2.1.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-     "predeploy": "npm run build",
-     "deploy": "main -b master -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

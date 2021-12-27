@@ -2,15 +2,15 @@ import './assets/scss/global.scss';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faArrowCircleLeft, faUserEdit, faTrash, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { fab, faBitcoin } from '@fortawesome/free-brands-svg-icons';
+import { faArrowCircleLeft, faUserEdit, faTrash, faUserPlus, faCoins } from '@fortawesome/free-solid-svg-icons';
 import { HomePage } from './pages/HomePage';
 import { ContactPage } from './pages/ContactPage';
 import { ContactDetails } from './pages/ContactDetails';
 import { StatisticPage } from './pages/StatisticPage';
 import { AppHeader } from './cmps/AppHeader';
 import { ContactEdit } from './pages/ContactEdit';
-library.add(fab, faArrowCircleLeft, faUserEdit, faTrash, faUserPlus);
+library.add(fab, faArrowCircleLeft, faUserEdit, faTrash, faUserPlus, faCoins, faBitcoin);
 
 export class App extends Component {
   render() {
