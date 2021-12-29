@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { contactService } from '../services/contactService.js';
+import { connect } from 'react-redux';
 import { ContactList } from '../cmps/ContactList';
 import { ContactFilter } from '../cmps/ContactFilter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getLoggedinUser } from '../store/actions/userActions';
 
-export class ContactPage extends Component {
-  state = {
-    contacts: null,
-    filterBy: null,
+class _ContactPage extends Component {
+  async componentDidMount() {
+    await this.props.getLoggedinUser();
+  }
+
+  removeContact = (contactId) => {
+    console.log('trye');
   };
 
-  async componentDidMount() {
-    this.loadContacts();
-  }
-
-  async loadContacts() {
-    const { filterBy } = this.state;
-    const contacts = await contactService.getContacts(filterBy);
-    this.setState({ contacts });
-  }
-
   onChangeFilter = (filterBy) => {
-    this.setState({ filterBy }, this.loadContacts);
+    // this.props.setFilterBy(filterBy);
+    // this.props.loadContacts();
   };
 
   render() {
-    const { contacts } = this.state;
+    let contacts = [];
+    if (this.props.loggedinUser) {
+      contacts = this.props.loggedinUser.contacts;
+    }
     return (
       <section className="contact-page container flex column text-center gap">
         <Link className="add-contact-link" to="/contact/edit">
@@ -39,3 +37,16 @@ export class ContactPage extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    loggedinUser: state.userModule.loggedinUser,
+  };
+};
+
+const mapDispatchToProps = {
+  // setFilterBy,
+  getLoggedinUser,
+};
+
+export const ContactPage = connect(mapStateToProps, mapDispatchToProps)(_ContactPage);

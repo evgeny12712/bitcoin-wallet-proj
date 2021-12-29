@@ -22,6 +22,10 @@
   }
 }
 
+.transfer-coin {
+  margin-block-start: 20px;
+}
+
 @include for-mobile-layout {
   .contact-details-container {
     margin: 0;

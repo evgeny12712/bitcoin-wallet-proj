@@ -17,6 +17,11 @@
       opacity: 1;
     }
   }
+
+  & .logout-link {
+    font-size: rem(14px);
+    margin-inline-start: 30px;
+  }
   @include for-tablet-layout {
     font-size: rem(14px);
   }

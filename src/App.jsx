@@ -10,6 +10,7 @@ import { ContactDetails } from './pages/ContactDetails';
 import { StatisticPage } from './pages/StatisticPage';
 import { AppHeader } from './cmps/AppHeader';
 import { ContactEdit } from './pages/ContactEdit';
+import { SignIn } from './pages/SignIn';
 library.add(fab, faArrowCircleLeft, faUserEdit, faTrash, faUserPlus, faCoins, faBitcoin);
 
 export class App extends Component {
@@ -22,6 +23,8 @@ export class App extends Component {
             <Switch>
               <Route component={ContactEdit} path="/contact/edit/:id?" />
               <Route component={ContactDetails} path="/contact/details/:id" />
+              <Route component={SignIn} path="/login" />
+              <Route component={SignIn} path="/signup" />
               <Route component={ContactPage} path="/contacts" />
               <Route component={StatisticPage} path="/statistic" />
               <Route component={HomePage} path="/" />

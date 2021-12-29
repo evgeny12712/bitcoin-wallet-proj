@@ -1,9 +1,12 @@
+export const utilService = {
+    makeId
+}
 
-export function makeId(length = 5) {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+function makeId(length = 10) {
+    var txt = ''
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
     for (var i = 0; i < length; i++) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
+        txt += possible.charAt(Math.floor(Math.random() * possible.length))
     }
-    return text;
+    return txt
 }

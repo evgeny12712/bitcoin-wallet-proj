@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import { getUser } from '../services/userService.js';
 import { getData } from '../services/bitcoinService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getUsers, getLoggedinUser } from '../store/actions/userActions';
+import { connect } from 'react-redux';
 
-export class HomePage extends Component {
+class _HomePage extends Component {
   state = {
-    user: getUser(),
+    user: null,
     bitcoinRate: null,
   };
 
   async componentDidMount() {
-    const user = await getUser();
+    await this.props.getUsers();
+    const user = await this.props.getLoggedinUser();
+    console.log('user', user);
     this.setState({ user });
     await this.loadBitcoinRate(this.state.user.coins);
   }
@@ -23,28 +26,29 @@ export class HomePage extends Component {
 
   render() {
     let { user, bitcoinRate } = this.state;
+    console.log(bitcoinRate);
     return (
       <section className="home-page flex column align-center m20">
         <h1>
           <span>Hello </span>
-          {user.name} !
+          {user && user.name} !
         </h1>
-        <div class="home-page-row-wrapper flex">
+        <div className="home-page-row-wrapper flex">
           <div className="icon-wrapper">
             <FontAwesomeIcon icon="coins" />
           </div>
           <span>Coins : </span>
-          {user.coins}
+          {user && user.coins}
         </div>
         {this.state.bitcoinRate && (
-          <div class="home-page-row-wrapper flex">
+          <div className="home-page-row-wrapper flex">
             <div className="icon-wrapper">
               <svg
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fab"
                 data-icon="bitcoin"
-                class="svg-inline--fa fa-bitcoin fa-w-16"
+                className="svg-inline--fa fa-bitcoin fa-w-16"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
@@ -63,3 +67,16 @@ export class HomePage extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.userModule.contact,
+  };
+};
+
+const mapDispatchToProps = {
+  getUsers,
+  getLoggedinUser,
+};
+
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(_HomePage);

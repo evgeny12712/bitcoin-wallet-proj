@@ -5,7 +5,10 @@
   text-align: center;
   padding: 20px;
   border: 1px solid black;
-  @include for-tablet-layout {
+  @include for-mobile-layout {
     max-width: 330px;
+  }
+  @include for-tablet-layout {
+    max-width: 630px;
   }
 }

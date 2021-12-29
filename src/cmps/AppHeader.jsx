@@ -20,6 +20,9 @@ export class AppHeader extends Component {
               <NavLink exact to="/statistic">
                 Statistics
               </NavLink>
+              <NavLink className="logout-link" exact to="/login">
+                Logout
+              </NavLink>
             </nav>
           </section>
         </header>

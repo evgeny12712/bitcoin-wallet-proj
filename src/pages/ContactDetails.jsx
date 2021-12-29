@@ -1,21 +1,41 @@
 import React, { Component } from 'react';
-import { contactService } from '../services/contactService.js';
+import { userService } from '../services/userService.js';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { transferCoins } from '../store/actions/userActions';
+import { connect } from 'react-redux';
 
-export class ContactDetails extends Component {
+class _ContactDetails extends Component {
   state = {
     contact: null,
+    coinsToTransfer: '',
+    isTransfer: false,
   };
 
   async componentDidMount() {
-    const contact = await contactService.getContactById(this.props.match.params.id);
-    console.log(contact);
+    const contact = await userService.getContactById(this.props.match.params.id);
     this.setState({ contact });
   }
 
+  handleChange = ({ target }) => {
+    const value = target.type === 'number' ? +target.value : target.value;
+    this.setState({ coinsToTransfer: value });
+  };
+
+  onTransferCoins = (ev) => {
+    ev.preventDefault();
+    console.log('transfering...');
+    this.props.transferCoins(this.state.coinsToTransfer, this.state.contact._id);
+  };
+
+  toggleTransfer = () => {
+    this.setState((prevState) => ({
+      isTransfer: !prevState.isTransfer,
+    }));
+  };
+
   render() {
-    const { contact } = this.state;
+    const { contact, coinsToTransfer, isTransfer } = this.state;
     return (
       <section className="container">
         {contact && (
@@ -42,6 +62,20 @@ export class ContactDetails extends Component {
                 <span>Phone : </span>
                 {contact.phone}
               </h3>
+              <form onSubmit={this.onTransferCoins} className="transfer-coin form-design flex column gap ">
+                {isTransfer && <input ref={this.inputRef} onChange={this.handleChange} value={coinsToTransfer} type="text" name="name" id="name" placeholder="Amount" />}
+                {isTransfer && <button className="submit-btn">Transfer</button>}
+              </form>
+              {!isTransfer && (
+                <button className="submit-btn" onClick={this.toggleTransfer}>
+                  Transfer Coins
+                </button>
+              )}
+              {isTransfer && (
+                <button className="submit-btn" onClick={this.toggleTransfer}>
+                  Cancel
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -49,3 +83,15 @@ export class ContactDetails extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    loggedinUser: state.userModule.loggedinUser,
+  };
+};
+
+const mapDispatchToProps = {
+  transferCoins,
+};
+
+export const ContactDetails = connect(mapStateToProps, mapDispatchToProps)(_ContactDetails);

@@ -1,0 +1,39 @@
+.signin-page {
+  margin-block: 50px;
+  gap: 10px;
+  & .sign-title {
+    font-weight: 700;
+    color: whitesmoke;
+    font-size: rem(30px);
+    font-family: Arial;
+    letter-spacing: 5px;
+    text-shadow: 0 0 15px $clr6, 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  & .form-design {
+    text-align: left;
+    & .signup-part {
+      & input {
+        margin-block-start: 5px;
+        margin-block-end: 15px;
+      }
+    }
+    & input {
+      margin-block-start: 5px;
+      margin-block-end: 15px;
+    }
+  }
+  & .switch-form-btn {
+    font-weight: 500;
+    margin-block-start: 20px;
+    line-height: 35px;
+    letter-spacing: 1px;
+    border: none;
+    background: transparent;
+    font-size: rem(18px);
+    color: whitesmoke;
+    transition: all 0.2s;
+    &:hover {
+      color: $clr6;
+    }
+  }
+}

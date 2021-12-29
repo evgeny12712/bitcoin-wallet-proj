@@ -1,9 +1,10 @@
 import { Component, createRef } from 'react';
-import { contactService } from '../services/contactService.js';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { removeContact, saveContact, getContactById, getEmptyContact } from '../store/actions/userActions';
+import { connect } from 'react-redux';
 
-export class ContactEdit extends Component {
+class _ContactEdit extends Component {
   state = {
     contact: null,
   };
@@ -11,7 +12,8 @@ export class ContactEdit extends Component {
 
   async componentDidMount() {
     const contactId = this.props.match.params.id;
-    const contact = contactId ? await contactService.getContactById(contactId) : contactService.getEmptyContact();
+    const contact = contactId ? await this.props.getContactById(contactId) : await this.props.getEmptyContact();
+    console.log(contact);
     this.setState({ contact }, () => this.inputRef.current.focus());
   }
 
@@ -23,12 +25,14 @@ export class ContactEdit extends Component {
 
   onSaveContact = async (ev) => {
     ev.preventDefault();
-    await contactService.saveContact({ ...this.state.contact });
-    this.props.history.push('/');
+    await this.props.saveContact({ ...this.state.contact });
+    this.props.history.push('/contacts');
   };
 
-  onDeleteContact = async () => {
-    await contactService.deleteContact(this.state.contact._id);
+  onRemoveContact = (ev) => {
+    ev.stopPropagation();
+    const contact = this.state.contact;
+    this.props.removeContact(contact._id);
     this.props.history.push('/contacts');
   };
 
@@ -43,21 +47,21 @@ export class ContactEdit extends Component {
                 <FontAwesomeIcon icon="arrow-circle-left" className="navigate-link-icon" />
               </Link>
               {contact._id && (
-                <button onClick={this.onDeleteContact} className="info-button-delete">
+                <button onClick={this.onRemoveContact} className="info-button-delete">
                   <FontAwesomeIcon icon="trash" />
                 </button>
               )}
             </div>
 
             <img src={`https://robohash.org/${contact._id}`} alt="" />
-            <form onSubmit={this.onSaveContact} className="edit-form flex column gap ">
+            <form onSubmit={this.onSaveContact} className="form-design flex column gap ">
               <label htmlFor="name">Name</label>
               <input ref={this.inputRef} onChange={this.handleChange} value={contact.name} type="text" name="name" id="name" placeholder="Name" />
               <label htmlFor="email">Email</label>
               <input onChange={this.handleChange} value={contact.email} type="text" name="email" id="email" placeholder="Email" />
               <label htmlFor="phone">Phone</label>
               <input onChange={this.handleChange} value={contact.phone} type="text" name="phone" id="phone" placeholder="Phone number" />
-              <button className="save-btn">Save</button>
+              <button className="submit-btn">Save</button>
             </form>
           </div>
         )}
@@ -65,3 +69,18 @@ export class ContactEdit extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    loggedinUser: state.userModule.loggedinUser,
+  };
+};
+
+const mapDispatchToProps = {
+  removeContact,
+  getContactById,
+  getEmptyContact,
+  saveContact,
+};
+
+export const ContactEdit = connect(mapStateToProps, mapDispatchToProps)(_ContactEdit);

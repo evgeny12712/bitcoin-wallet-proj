@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Chart } from '../cmps/Chart';
 import { getData } from '../services/bitcoinService';
+import { ChartV2 } from '../cmps/ChartV2';
 export class StatisticPage extends Component {
   state = {
     marketPriceData: null,
@@ -29,6 +30,7 @@ export class StatisticPage extends Component {
     const { marketPriceData, tradeVolume } = this.state;
     return (
       <section>
+        {/* <ChartV2 marketPriceData={marketPriceData} /> */}
         {marketPriceData && <Chart data={marketPriceData} />}
         {/* {bitcoinRate && <Chart marketPriceData={bitcoinRate} />} */}
         {tradeVolume && <Chart data={tradeVolume} />}
