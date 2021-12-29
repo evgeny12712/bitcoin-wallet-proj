@@ -6,7 +6,7 @@ export function signUp(user) {
             userService.signup(user)
             dispatch({ type: 'SET_LOGGEDIN_USER', user: user })
         } catch (err) {
-            console.log(err);
+            console.log('error', err);
         }
     }
 }
