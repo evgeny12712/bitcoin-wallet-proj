@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getData } from '../services/bitcoinService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getUsers, getLoggedinUser } from '../store/actions/userActions';
+import { userService } from '../services/userService';
 import { connect } from 'react-redux';
 
 class _HomePage extends Component {
@@ -13,7 +14,6 @@ class _HomePage extends Component {
   async componentDidMount() {
     await this.props.getUsers();
     const user = await this.props.getLoggedinUser();
-    console.log('user', user);
     this.setState({ user });
     await this.loadBitcoinRate(this.state.user.coins);
   }
@@ -26,7 +26,6 @@ class _HomePage extends Component {
 
   render() {
     let { user, bitcoinRate } = this.state;
-    console.log(bitcoinRate);
     return (
       <section className="home-page flex column align-center m20">
         <h1>
@@ -40,7 +39,7 @@ class _HomePage extends Component {
           <span>Coins : </span>
           {user && user.coins}
         </div>
-        {this.state.bitcoinRate && (
+        {bitcoinRate && (
           <div className="home-page-row-wrapper flex">
             <div className="icon-wrapper">
               <svg
@@ -63,6 +62,28 @@ class _HomePage extends Component {
             {bitcoinRate}
           </div>
         )}
+
+        <div className="add-underline" />
+        <h1 className="transfer-title">Transfers history : </h1>
+        <ul className="transfers flex wrap gap ">
+          {user &&
+            user.moves.map((move) => (
+              <li key={move.at}>
+                <h3>
+                  <span>Name : </span>
+                  {move.name}
+                </h3>
+                <h3>
+                  <span>Done at : </span>
+                  {new Date(move.at).toLocaleString()}
+                </h3>
+                <h3>
+                  <span>Amount : </span>
+                  {move.amount}
+                </h3>
+              </li>
+            ))}
+        </ul>
       </section>
     );
   }

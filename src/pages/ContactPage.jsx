@@ -4,27 +4,23 @@ import { connect } from 'react-redux';
 import { ContactList } from '../cmps/ContactList';
 import { ContactFilter } from '../cmps/ContactFilter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getLoggedinUser } from '../store/actions/userActions';
+import { getLoggedinUser, setFilterBy, loadContacts } from '../store/actions/userActions';
 
 class _ContactPage extends Component {
   async componentDidMount() {
-    await this.props.getLoggedinUser();
+    this.props.loadContacts();
   }
 
-  removeContact = (contactId) => {
-    console.log('trye');
-  };
-
   onChangeFilter = (filterBy) => {
-    // this.props.setFilterBy(filterBy);
-    // this.props.loadContacts();
+    this.props.setFilterBy(filterBy);
+    this.props.loadContacts();
   };
 
   render() {
-    let contacts = [];
-    if (this.props.loggedinUser) {
-      contacts = this.props.loggedinUser.contacts;
-    }
+    let { contacts } = this.props;
+    // if (this.props.loggedinUser) {
+    //   contacts = this.props.loggedinUser.contacts;
+    // }
     return (
       <section className="contact-page container flex column text-center gap">
         <Link className="add-contact-link" to="/contact/edit">
@@ -41,12 +37,14 @@ class _ContactPage extends Component {
 const mapStateToProps = (state) => {
   return {
     loggedinUser: state.userModule.loggedinUser,
+    contacts: state.userModule.contacts,
   };
 };
 
 const mapDispatchToProps = {
-  // setFilterBy,
+  setFilterBy,
   getLoggedinUser,
+  loadContacts,
 };
 
 export const ContactPage = connect(mapStateToProps, mapDispatchToProps)(_ContactPage);

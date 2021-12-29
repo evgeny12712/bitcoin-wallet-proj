@@ -18,4 +18,24 @@
       margin-inline-end: 7px;
     }
   }
+  .transfer-title {
+    // margin-block-start: 20px;
+  }
+  .transfers {
+    width: 60%;
+    list-style: none;
+    font-size: rem(14px);
+    background-color: $clr3;
+    border-radius: 10%;
+    & li {
+      margin: 20px;
+    }
+  }
+}
+
+.add-underline {
+  width: 70%;
+  height: 2px;
+  background: rgba(247, 247, 247, 0.274);
+  margin-block: 20px;
 }

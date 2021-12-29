@@ -73,10 +73,10 @@ export function getUsers() {
     }
 }
 
-export function transferCoins(amount, toContactId) {
+export function transferCoins(amount, contact) {
     return async (dispatch) => {
         try {
-            const user = await userService.transferCoins(amount, toContactId)
+            const user = await userService.transferCoins(amount, contact)
             dispatch({ type: 'SET_LOGGEDIN_USER', user })
         } catch (error) {
             console.log(error);
@@ -85,6 +85,19 @@ export function transferCoins(amount, toContactId) {
 }
 
 //----------------------CONTACTS--------------------------//
+
+export function loadContacts() {
+    return async (dispatch, getState) => {
+        const { filterBy } = getState().userModule
+        try {
+            const contacts = await userService.getContacts(filterBy)
+            dispatch({ type: 'SET_CONTACTS', contacts })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+}
+
 
 export function removeContact(contactId) {
     return async (dispatch) => {

@@ -22,10 +22,11 @@ class _ContactDetails extends Component {
     this.setState({ coinsToTransfer: value });
   };
 
-  onTransferCoins = (ev) => {
+  onTransferCoins = async (ev) => {
     ev.preventDefault();
     console.log('transfering...');
-    this.props.transferCoins(this.state.coinsToTransfer, this.state.contact._id);
+    await this.props.transferCoins(this.state.coinsToTransfer, this.state.contact);
+    this.props.history.push('/');
   };
 
   toggleTransfer = () => {

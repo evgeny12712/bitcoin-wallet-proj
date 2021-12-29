@@ -287,7 +287,7 @@ function logout() {
     return sessionStorage.removeItem('loggedinUser')
 }
 
-function transferCoins(amount, toContactId) {
+function transferCoins(amount, contact) {
     const user = getLoggedinUser()
     amount = parseInt(amount)
     user.coins -= amount
@@ -295,12 +295,13 @@ function transferCoins(amount, toContactId) {
         user.coins += amount
         return Promise.reject()
     }
-    user.moves.push({
-        toId: toContactId,
+    user.moves.unshift({
+        name: contact.name,
+        toId: contact._id,
         at: Date.now(),
         amount
     })
-    let toUser = getUserById(toContactId)
+    let toUser = getUserById(contact._id)
     if (toUser) {
         toUser.coins += amount
         saveUser(toUser)
@@ -310,7 +311,6 @@ function transferCoins(amount, toContactId) {
 }
 
 function saveUser(user) {
-    console.log(user)
     sessionStorage.setItem('loggedinUser', JSON.stringify(user))
     let users = getUsers()
     const idx = users.findIndex(currUser => currUser._id === user._id)
@@ -332,7 +332,6 @@ function getEmptyUser() {
 function getUserById(id) {
     const users = getUsers()
     let user = users.find(user => user._id === id)
-    user.coins = +user.coins
     return user
 }
 
@@ -398,7 +397,6 @@ function _addContact(contact) {
     let loggedinUser = getLoggedinUser()
     return new Promise((resolve, reject) => {
         contact._id = utilService.makeId()
-        console.log(contact._id)
         loggedinUser.contacts.unshift(contact)
         saveUser(loggedinUser)
         resolve(loggedinUser)
@@ -427,7 +425,6 @@ function filter(name) {
 }
 
 function _getContacts(user) {
-    console.log(demoUsers)
     const contacts = demoUsers.map(currUser => {
         return { _id: currUser._id, username: currUser.username, name: currUser.name, phone: currUser.phone, email: currUser.email }
     })
