@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { getData } from '../services/bitcoinService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getUsers, getLoggedinUser } from '../store/actions/userActions';
-import { userService } from '../services/userService';
 import { connect } from 'react-redux';
 
 class _HomePage extends Component {

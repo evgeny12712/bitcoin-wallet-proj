@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bitcoin-wallet-proj/static/css/main.e89bf38c.css",
-    "main.js": "/bitcoin-wallet-proj/static/js/main.e35a9851.js",
+    "main.css": "/bitcoin-wallet-proj/static/css/main.fa2dbcc9.css",
+    "main.js": "/bitcoin-wallet-proj/static/js/main.dd9770e2.js",
     "static/js/787.3bed54a0.chunk.js": "/bitcoin-wallet-proj/static/js/787.3bed54a0.chunk.js",
     "index.html": "/bitcoin-wallet-proj/index.html",
-    "main.e89bf38c.css.map": "/bitcoin-wallet-proj/static/css/main.e89bf38c.css.map",
-    "main.e35a9851.js.map": "/bitcoin-wallet-proj/static/js/main.e35a9851.js.map",
+    "main.fa2dbcc9.css.map": "/bitcoin-wallet-proj/static/css/main.fa2dbcc9.css.map",
+    "main.dd9770e2.js.map": "/bitcoin-wallet-proj/static/js/main.dd9770e2.js.map",
     "787.3bed54a0.chunk.js.map": "/bitcoin-wallet-proj/static/js/787.3bed54a0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e89bf38c.css",
-    "static/js/main.e35a9851.js"
+    "static/css/main.fa2dbcc9.css",
+    "static/js/main.dd9770e2.js"
   ]
 }

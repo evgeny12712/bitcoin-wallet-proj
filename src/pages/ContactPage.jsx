@@ -18,9 +18,6 @@ class _ContactPage extends Component {
 
   render() {
     let { contacts } = this.props;
-    // if (this.props.loggedinUser) {
-    //   contacts = this.props.loggedinUser.contacts;
-    // }
     return (
       <section className="contact-page container flex column text-center gap">
         <Link className="add-contact-link" to="/contact/edit">
