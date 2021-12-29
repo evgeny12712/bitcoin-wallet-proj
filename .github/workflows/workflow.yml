@@ -1,0 +1,25 @@
+name: Github Pages Deploy
+
+on:
+push:
+branches:
+  - 'master'
+jobs:
+build:
+runs-on: ubuntu-latest
+
+strategy:
+matrix:
+node-version: [15.x]
+
+steps:
+  -  name: Checkout
+     uses : actions/checkout
+
+       -  name: Install and build
+     uses : npm install && npm run build
+
+  - name: Deploy
+  uses: evgeny12712/bitcoin-wallet-proj
+  with: gh-pages
+  folder: build

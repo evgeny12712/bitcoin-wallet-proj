@@ -261,13 +261,13 @@ function getUsers() {
 
 function signup(user) {
     user._id = utilService.makeId()
-    if (!user.contacts.length) user.contacts = _getContacts(user)
+    user.contacts = _getContacts(user)
+    user.moves = []
     let users = storageService.load('users')
     if (!users) users = []
     users.push(user)
     sessionStorage.setItem('loggedinUser', JSON.stringify(user))
     storageService.store('users', users)
-    users.push(user)
 }
 
 function login(user) {
